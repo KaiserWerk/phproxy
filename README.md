@@ -1,6 +1,10 @@
 # phproxy
-phproxy is a fast & tiny app proxy which, at a foundational level, hides your PHP app and runs all requests through itself first instead.
-That way you can safely run your unexposed PHP app locally while profiting from increased performance (asset & page content caching), greatly simplified TLS certificate setup and URL rewriting (even if the underlying server does not enable it), all configurable with a small YAML configuration file.
+phproxy is a fast & tiny app proxy which, at a foundational level, hides your PHP 
+app (or static web app) and runs all requests through itself first instead.
+That way you can safely run your unexposed PHP app locally while profiting from 
+increased performance (asset & page content caching), greatly simplified TLS 
+certificate setup and URL rewriting (even if the underlying server does not 
+enable it), all configurable with a small YAML configuration file.
 
 ### Feature overview
 
@@ -15,7 +19,34 @@ That way you can safely run your unexposed PHP app locally while profiting from 
 
 ### Configuration
 
-tbd
+The YAML content of a configuration file might look like this:
+
+```yaml
+phproxy:
+    bind_addr: :8881
+    tls:
+        key_file: /opt/certs/key.pem
+        cert_file: /opt/certs/key.pem
+        letsencrypt:
+            enabled: false
+            domain: mydomain.com
+            email: me@mydomain.com
+            accept_tos: true
+apps:
+    - name: testapp
+      caching:
+        level: 1
+        static_assets:
+            - assets/css/style.css
+            - assets/js/scripts.js
+            - assets/images
+      url_rewriting:
+        custom:
+            /some/{id:[0-9]+}/{action}: some.php?action={action}&id={id}
+        htaccess_files:
+            - .htaccess
+            - subfolder/.htaccess
+```
 
 ### Usage
 
