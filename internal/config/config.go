@@ -32,6 +32,7 @@ type (
 	PHPApp struct {
 		Name         string       `yaml:"name"`
 		Host         string       `yaml:"host"`
+		PublicDomain string       `yaml:"public_domain"`
 		Caching      Caching      `yaml:"caching"`
 		UrlRewriting UrlRewriting `yaml:"url_rewriting"`
 	}
