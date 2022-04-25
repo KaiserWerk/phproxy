@@ -1,4 +1,4 @@
-# phproxy
+# phproxy (Work in progress!)
 phproxy is a fast & tiny app proxy which, at a foundational level, hides your PHP 
 app (or static web app) and runs all requests through itself first instead.
 That way you can safely run your unexposed PHP app locally while profiting from 
